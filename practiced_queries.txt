@@ -1,0 +1,120 @@
+
+\l
+ 
+\d
+ 
+
+
+select * from student;
+
+
+
+select * from student where age=23;
+
+
+
+select * from student where age=26;
+
+select * from student where id in (select id from subjects where sub_marks>94);
+ 
+
+select * from student cross join subjects;
+
+
+
+select * from student cross join subjects where student.id=subjects.id;
+ 
+
+
+select * from subjects cross join student;
+
+select * from subjects left outer join sub on subjects.sub_id=sub.sub_id;
+
+select * from subjects right outer join sub on subjects.sub_id=sub.sub_id;
+
+select * from student;
+
+select * from student;
+
+select * from student where name like 'a_';
+
+select * from student where name like 'a%';
+
+
+select * from student where name like '%a';
+
+
+select * from student where name like '_a';
+
+
+select * from student where name like '%n';
+
+select * from student where name like '%p';
+
+select * from student where name like '_a%';
+
+select * from student cross join subjects where student.id=subjects.id;
+
+select * from student right outer join subjects on student.id=subjects.id;
+
+
+select * from subjects left outer join sub on subjects.sub_id=sub.sub_id;
+
+select * from student left outer join subjects on student.id=subjects.id;
+
+select * from student;
+
+
+select * from sub;
+
+select * from subjects;
+
+select student.id from student inner join subjects on student.id=subjects.id union(select subjects.sub_id from subjects left outer join sub on subjects.sub_id=sub.sub_id);
+
+select student.id,student.name from student inner join subjects on student.id=subjects.id union(select subjects.sub_id,sub.sub_name from subjects left outer join sub on subjects.sub_id=sub.sub_id);
+
+select student.id,student.name from student inner join subjects on student.id=subjects.id union all(select subjects.sub_id,sub.sub_name from subjects left outer join sub on subjects.sub_id=sub.sub_id);
+
+
+
+select student.id,student.name from student inner join subjects on student.id=subjects.id union all(select subjects.sub_id,sub.sub_name from subjects left outer join sub on subjects.sub_id=sub.sub_id);
+
+select name from student group by name;
+
+
+select * from company;
+
+select * from company limit 4;
+
+select max(salary) from company;
+       
+select * from company order by salary desc limit 1 offset 2;
+
+
+select * from company order by salary desc;
+
+select * from company order by salary desc limit 1 offset 2;
+
+
+select * from company order by salary desc limit 0 offset 1;
+
+
+select * from company order by salary desc limit 2;
+
+
+select * from company order by salary desc limit 1 offset 2;
+
+
+select * from company order by salary desc limit 1 offset 1;
+
+
+select * from company order by salary desc limit 1 offset 0;
+
+
+SELECT *
+FROM  (
+   SELECT *,
+          DENSE_RANK() OVER (ORDER BY SALARY DESC) AS DENSE_RANK 
+   FROM company
+) as t
+WHERE dense_rank = 2;
